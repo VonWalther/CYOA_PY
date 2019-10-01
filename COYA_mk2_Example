@@ -1,0 +1,107 @@
+def main():
+  # Game States
+  holding = "null"
+  maddness = 0
+  life = 6
+  
+  #The Adventure Begins
+  a_FirstRoom(life)
+  
+
+#****** Game States *****
+def checkDeath(life):
+  exit(0)
+  
+def checkMadness(maddness):
+  print("We are all going mad")
+  
+def printGameStates(life, mad = 0, hand = "null"):
+  printLife(life)
+  printMaddness(mad)
+  printHolding(hand)
+
+# code for Life
+def printLife(life):
+  if(life > 6):
+    print("Your life force radiates in the room strongly{}".format('!'*life))
+  elif(life > 3):
+    print("Your life force is strong{}".format('\u2665'*life))
+  elif(life > 1):
+    print("You have been weakend.")
+  elif(life > 0):
+    print("Your life is slipping away rapidly.")
+  else:
+    print("YOU ARE DEAD!")
+    exit("PrintDeadError") 
+  
+  #Code for Madness
+def printMaddness(mad):
+  if(mad > 3):
+    print("You are going mad!")
+  
+  #Code for Whats in your Hand
+def printHolding(hand):
+  if( not(hand == "null") ):
+    #if
+    print("You have something in your hand")
+    
+    
+  
+#********* The First Room ******
+def a_FirstRoom(life):
+  print("Frist Room")
+  return(life)
+  
+def aFR_Choices(c):
+  return 1
+
+#****** HallWay ******
+def b1_Foyer(life):
+  print("Hallway")
+  return(life)
+
+def b1F_Choices(c):
+  return 0
+
+#****** West BedRoom ******
+def b2_WBedRoom(life):
+  print("Bed Room")
+  return(life)
+
+def b2WBR_Choices(c):
+  return(0)
+
+#****** East BedRoom ******
+def b3_EBedRooom(life):
+  print("Bed Room")
+  return(life)
+
+def b3EBR_Choices(c):
+  return(0)
+
+#****** Study ******
+def b4_Study(life):
+  print("Study")
+  return(life)
+
+def b4S_Choices(c):
+  return(0)
+
+#****** Dark Altar ******
+def b5_DarkAltar(life):
+  print("Dark Altar")
+  return(life)
+
+def b5_Choices(c):
+  return(0)
+
+#****** Tunnel Out ******
+def c_TunnelOut(life):
+  print("Tunnel")
+  return(life)
+
+def cTO_Choices(c):
+  return(0)
+
+
+main()
