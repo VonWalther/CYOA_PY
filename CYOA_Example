@@ -1,0 +1,78 @@
+def main():
+    start(5)
+    
+def start(life):
+    areYouDead(life)
+    print("*****************************************************")
+    print("First Room".center(40," "))
+    print("*****************************************************")
+    printStats(life)
+    print("The room is empty.\nThere is a door in front of you.")
+    loop = True
+    while (loop):
+        choice = input("What do you do?\n")
+        if( (choice.lower() == "open") or (choice.lower() == "forward")):
+            roomOne(life)
+            loop = False
+        else:
+            print("I do not understand that comand.")
+    
+def roomOne(life):
+    areYouDead(life)
+    print("*****************************************************")
+    print("Tappastry Room".center(40," ") )
+    print("*****************************************************")    
+    printStats(life)
+    print("This room has two doors in it. One to the left one to the right.")
+    print("There is a large tapastry in front of you, depiciting a large Knot.")
+    while(True):
+        choice = input("Which door do you want to open?\n")
+        if( roomOneChoice(choice) == 0 ):
+            lastRoom(life)
+        elif (roomOneChoice(choice) == 1):
+            life -= 1
+            start( life )
+        else:
+            print("I do not understand that comand.") 
+            
+def roomOneChoice(c):
+    if( c.lower() == "left" or c.lower() == "right" ):
+        return 1
+    if( c.lower() == "forward"):
+        return 0
+    if( c.lower() == "rip tapastry"):
+        return 0
+    if( c.lower() == "cut tapastry"):
+        return 0
+    if( c.lower() == "cut"):
+        return 0
+    
+def lastRoom(life):
+    print("You win with %2d life left!!!!!!" %life)
+    exit(2)
+    
+def areYouDead(life):
+    clearScreen()
+    if(life < 1):
+        death()
+
+def printStats(life):
+    print("You have %2d life left" %life)
+             
+def clearScreen():
+    for x in range(20):
+        print("")
+
+def death():
+    clearScreen()
+    print("".center(60,"X") )
+    print("You have died, would you like to play again?")
+    choise = input("Yes or No\n")
+    if( choise.lower == "yes" ):
+        start(6)
+    else:
+        exit(1)
+
+main()
+    
+ 
