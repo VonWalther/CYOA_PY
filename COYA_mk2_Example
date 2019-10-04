@@ -3,10 +3,23 @@ def main():
   holding = "null"
   maddness = 0
   life = 6
+  gameState = 0
   
   #The Adventure Begins
-  a_FirstRoom(life)
+  win = False
+  while(not win):
+    userPrompt = chooseRoom(gameState)
+    temp = gameState
+    while(gameState == temp):
+      c = userInput(userPrompt)
+      gameState = setState(c, gameState)
+      if(gameState > 90):
+        win = True
+  c_TunnelOut(gameState)
   
+#Function End
+      
+      
 
 #****** Game States *****
 def checkDeath(life):
@@ -44,16 +57,53 @@ def printHolding(hand):
   if( not(hand == "null") ):
     #if
     print("You have something in your hand")
-    
-    
+
+#*********** Game Engines ***************
+def chooseRoom(gState = 0):
+  prompt = ""
+  if(gState == 0): #Fisrt Room
+    a_FirstRoom(gState)
+    prompt = "What do you want to do?"
+  else:
+    promt = "You should not be in here, please restart the game."
+  return prompt
+
+#End Function
+
+  
+
+#********* Text Parser *********   
+def userInput(prompt):
+  understand = False
+  code = 0
+  while(not understand):
+    userText = input(prompt)
+    if(userText == "CatDog"):
+      code += 10
+      understand = True
+    #elif(parse more stuff):
+      #do stuff
+    else:
+      print("That is not a vaild game comnand, please try something else")
+      
+  return(code)
+
+#EndFunction
+      
+      
+  
   
 #********* The First Room ******
-def a_FirstRoom(life):
-  print("Frist Room")
+def a_FirstRoom(states):
+  print('*'*60)
+  print("*" + "Frist Room".center(58,' ') + '*')
+  print('*'*60)
   return(life)
-  
+
+"""
 def aFR_Choices(c):
   return 1
+"""
 
 #****** HallWay ******
 def b1_Foyer(life):
@@ -68,40 +118,52 @@ def b2_WBedRoom(life):
   print("Bed Room")
   return(life)
 
+'''
 def b2WBR_Choices(c):
   return(0)
+'''
 
 #****** East BedRoom ******
 def b3_EBedRooom(life):
   print("Bed Room")
   return(life)
 
+'''
 def b3EBR_Choices(c):
   return(0)
+'''
 
 #****** Study ******
 def b4_Study(life):
   print("Study")
   return(life)
 
+'''
 def b4S_Choices(c):
   return(0)
+'''
 
 #****** Dark Altar ******
-def b5_DarkAltar(life):
+def b5_DarkAltar(state):
   print("Dark Altar")
   return(life)
 
+'''
 def b5_Choices(c):
   return(0)
+'''
 
 #****** Tunnel Out ******
-def c_TunnelOut(life):
+def c_TunnelOut(state):
   print("Tunnel")
-  return(life)
-
-def cTO_Choices(c):
+  print("You made climb into the tunnle and as you crawl to the light at end,\nyou can only hope this leads to freedom.")
+  if(state > 100):
+    print("Supper Win!!!")
   return(0)
 
+'''
+def cTO_Choices(c):
+  return(0)
+'''
 
 main()
